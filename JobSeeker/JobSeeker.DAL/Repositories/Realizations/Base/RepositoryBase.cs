@@ -62,7 +62,10 @@ public abstract class RepositoryBase<T> : IRepositoryBase<T>
     {
         _dbContext.Entry(entity).State = EntityState.Detached;
     }
-
+    public bool Any()
+    {
+        return _dbContext.Set<T>().Any();
+    }
     public IQueryable<T> Include(params Expression<Func<T, object>>[] includes)
     {
         IIncludableQueryable<T, object>? query = default;

@@ -1,9 +1,7 @@
 ﻿using JobSeeker.DAL.Entities.Vacancy;
 using JobSeeker.DAL.Persistence;
 using JobSeeker.DAL.Repositories.Interfaces.Base;
-using JobSeeker.DAL.Repositories.Interfaces.Site;
 using JobSeeker.DAL.Repositories.Interfaces.Vacancy;
-using JobSeeker.DAL.Repositories.Realizations.Site;
 using System.Transactions;
 
 namespace JobSeeker.DAL.Repositories.Realizations.Base
@@ -12,7 +10,6 @@ namespace JobSeeker.DAL.Repositories.Realizations.Base
 	{
 		private readonly JobSeekerDbContext _jobSeekerDbContext;
 		private IVacancyRepository _vacancyRepository;
-		private ISiteRepository _siteRepository;
 		public RepositoryWrapper(JobSeekerDbContext jobSeekerDbContext)
 		{
 			_jobSeekerDbContext = jobSeekerDbContext;
@@ -28,18 +25,6 @@ namespace JobSeeker.DAL.Repositories.Realizations.Base
 				}
 
 				return _vacancyRepository;
-			}
-		}
-		public ISiteRepository SiteRepository
-		{
-			get
-			{
-				if (_siteRepository is null)
-				{
-					_siteRepository = new SiteRepository(_jobSeekerDbContext);
-				}
-
-				return _siteRepository;
 			}
 		}
 		public int SaveChanges()

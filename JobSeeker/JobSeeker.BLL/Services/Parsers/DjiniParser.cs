@@ -3,6 +3,7 @@ using Azure.Core;
 using HtmlAgilityPack;
 using JobSeeker.BLL.DTO.Vacancy;
 using JobSeeker.BLL.Services.DataConverter;
+using JobSeeker.BLL.Services.Parsers.Base;
 using JobSeeker.DAL.Entities.Vacancy;
 using JobSeeker.DAL.Persistence;
 using JobSeeker.DAL.Repositories.Interfaces.Base;
@@ -13,16 +14,16 @@ using System.Web;
 
 namespace JobSeeker.BLL.Services.Parsers
 {
-    public class DjiniParser : Parser
+    public class DjiniParser : Parser, IParser
     {
 		public DjiniParser(string _link) : base(_link)
 		{
             this._link = "https://djinni.co/jobs/?all-keywords=&any-of-keywords=&exclude-keywords=&primary_keyword=.NET&exp_level=no_exp";
 		}
 
-		public override List<Vacancy> Parse()
+		public List<VacancyDTO> Parse()
         {
-            List<Vacancy> vacancies = new();
+            List<VacancyDTO> vacancies = new();
 			HtmlDocument doc = new();
 			try
             {
@@ -48,7 +49,7 @@ namespace JobSeeker.BLL.Services.Parsers
                         if (job != null && job.HasChildNodes)
                         {
                             RemoveEmptyNodes(job);
-                            Vacancy vacancy = GetVacancy(job);
+                            VacancyDTO vacancy = GetVacancy(job);
                             vacancies.Add(vacancy);
                         }
                     }
@@ -73,9 +74,9 @@ namespace JobSeeker.BLL.Services.Parsers
                 }
             }
         }
-        private Vacancy GetVacancy(HtmlNode job)
+        private VacancyDTO GetVacancy(HtmlNode job)
         {
-            Vacancy vacancy = new() { SiteId = 1 };
+            VacancyDTO vacancy = new();
             HtmlNodeCollection jobInfo = job.ChildNodes;
             int stepNum = 1;
 
@@ -108,7 +109,7 @@ namespace JobSeeker.BLL.Services.Parsers
             return vacancy;
         }
 
-        private void GetDjiniHeader(HtmlNode info, Vacancy vacancy)
+        private void GetDjiniHeader(HtmlNode info, VacancyDTO vacancy)
         {
             string[] values = info.InnerText.Trim().Replace('\n', ' ')
                          .Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
@@ -160,7 +161,7 @@ namespace JobSeeker.BLL.Services.Parsers
             vacancy.Link = $"https://djinni.co{link}";
         }
 
-        private void GetDjineFooter(HtmlNode info, Vacancy vacancy)
+        private void GetDjineFooter(HtmlNode info, VacancyDTO vacancy)
         {
             string data = HttpUtility.HtmlDecode(info.InnerText);
             string footer = $"\n{data.Replace("Детальніше", "").Replace('\n', ' ').Trim()}";
@@ -168,7 +169,7 @@ namespace JobSeeker.BLL.Services.Parsers
             vacancy.Description = footer;
         }
 
-        private void GetDjiniBody(HtmlNode info, Vacancy vacancy)
+        private void GetDjiniBody(HtmlNode info, VacancyDTO vacancy)
         {
             string location = info.ChildNodes?[1]?.SelectSingleNode(".//span[@class='location-text']")
                        ?.InnerText

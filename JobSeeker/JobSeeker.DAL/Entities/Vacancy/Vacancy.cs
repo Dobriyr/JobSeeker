@@ -2,7 +2,6 @@
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using JobSeeker.DAL.Entities.Site;
 
 [Table("vacancies", Schema = "vacancy")]
 public class Vacancy
@@ -12,28 +11,25 @@ public class Vacancy
     public int Id { get; set; }
 
     [Required]
-    public int SiteId { get; set; }
-    [Required]
     [MaxLength(100)]
-    public string Name { get; set; }
+    public string Name { get; set; } = string.Empty;
 
     [Required]
-	[MaxLength(400)]
-	public string Link { get; set; }
+    [MaxLength(400)]
+    public string Link { get; set; } = string.Empty;
 
     [Required]
     public DateTime CreatedDate { get; set; }
 
     [Required]
-	[MaxLength(100)]
-	public string Location { get; set; }
-        
+    [MaxLength(100)]
+    public string Location { get; set; } = string.Empty;
+
     [Required]
-	[MaxLength(100)]
-	public string Company { get; set; }
+    [MaxLength(100)]
+    public string Company { get; set; } = string.Empty;
     public bool? Remote { get; set; }
     public int? Views { get; set; }
     public int? Responses { get; set; }
     public string? Description { get; set; }
-    public Site Site { get; set; }
 }

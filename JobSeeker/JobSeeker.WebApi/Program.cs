@@ -1,5 +1,8 @@
 using Hangfire;
+using JobSeeker.BLL.Services.NewVacanciesMonitor;
+using JobSeeker.BLL.Services.Parsers;
 using JobSeeker.WebApi.Extensions;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Host.ConfigureApplication();
@@ -17,7 +20,7 @@ if (app.Environment.EnvironmentName == "Local")
 	app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebAPIv5 v1"));
 	await app.ApplyMigrations();
 
-	SeedDataExtension.SeedData(app);
+	await SeedDataExtension.SeedData(app);
 }
 else
 {
@@ -29,7 +32,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-/*BackgroundJob.Schedule<DjiniParser>(
-	 wp => wp.AddNew(), TimeSpan.FromMinutes(1));*/
+// BackgroundJob.Schedule<VacanciesMonitor>(
+//	 wp => wp.CheckForVacancies(), TimeSpan.FromMinutes(1));
 
 app.Run();

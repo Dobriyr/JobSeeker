@@ -22,24 +22,6 @@ namespace JobSeeker.DAL.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("JobSeeker.DAL.Entities.Site.Site", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Link")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("sites", "site");
-                });
-
             modelBuilder.Entity("JobSeeker.DAL.Entities.Vacancy.Vacancy", b =>
                 {
                     b.Property<int>("Id")
@@ -80,28 +62,12 @@ namespace JobSeeker.DAL.Migrations
                     b.Property<int?>("Responses")
                         .HasColumnType("int");
 
-                    b.Property<int>("SiteId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("Views")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SiteId");
-
                     b.ToTable("vacancies", "vacancy");
-                });
-
-            modelBuilder.Entity("JobSeeker.DAL.Entities.Vacancy.Vacancy", b =>
-                {
-                    b.HasOne("JobSeeker.DAL.Entities.Site.Site", "Site")
-                        .WithMany()
-                        .HasForeignKey("SiteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Site");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,70 +1,68 @@
-﻿using JobSeeker.BLL.Services.Parsers;
-using JobSeeker.DAL.Entities.Site;
+﻿using AutoMapper;
+using JobSeeker.BLL.DTO.Vacancy;
+using JobSeeker.BLL.Services.Parsers;
+using JobSeeker.BLL.Services.Parsers.Base;
+using JobSeeker.DAL.Entities.Vacancy;
 using JobSeeker.DAL.Persistence;
+using JobSeeker.DAL.Repositories.Interfaces.Base;
 
 namespace JobSeeker.WebApi.Extensions
 {
-	public class SeedDataExtension
+    public class SeedDataExtension
 	{
-		private readonly JobSeekerDbContext _context;
+		private readonly IRepositoryWrapper _wrapper;
+		private readonly IMapper _mapper;
 
-		public SeedDataExtension(JobSeekerDbContext context)
+		public SeedDataExtension(IRepositoryWrapper wrapper, IMapper mapper)
 		{
-			_context = context;
+			_wrapper = wrapper;
+			_mapper = mapper;
 		}
+
 		private bool _seed = false;
 
-		public static void SeedData(IHost app)
+		public static async Task SeedData(IHost app)
 		{
 			var scopedFactory = app.Services.GetService<IServiceScopeFactory>();
 
-			using (var scope = scopedFactory.CreateScope())
+			using (var scope = scopedFactory?.CreateScope())
 			{
-				var service = scope.ServiceProvider.GetService<SeedDataExtension>();
-				if (service == null)
+				var service = scope?.ServiceProvider.GetService<SeedDataExtension>();
+				try
 				{
-					Console.WriteLine("something go wrong TEACH ME TO PROGRAM THIS APP))");
+					if (service != null)
+					{
+						await service!.Seed();
+					}
+					else
+					{
+						Console.WriteLine("service is null");
+					}
 				}
-				service?.Seed();
+				catch(Exception ex)
+				{
+					Console.WriteLine(ex.Message);
+				}
 			}
 		}
 
-		public void Seed()
+		public async Task Seed()
 		{
-			if (!_context.Sites.Any())
+			if (!_wrapper.VacancyRepository.Any())
 			{
-				SeedSites();
-				_seed = true;
-			}
-
-			if (!_context.Vacancies.Any())
-			{
-				SeedVacancies();
+				await SeedVacancies();
 				_seed = true;
 			}
 			if (_seed)
 			{
-				_context.SaveChanges();
+				_wrapper.SaveChanges();
 			}
 		}
-
-		private void SeedSites()
+		private async Task SeedVacancies()
 		{
-			var sites = new List<Site>()
-				{
-					new Site { Link = "https://djinni.co/" },
-					new Site { Link = "https://dou.ua/" },
-					new Site { Link = "https://rabota.ua/" }
-				};
-
-			_context.Sites.AddRange(sites);
-			
-		}
-		private void SeedVacancies()
-		{
-			Parser parser = new DjiniParser("");
-			var vacancies = parser.Parse();
-			_context.Vacancies.AddRange(vacancies);
+			IParser parser = new DjiniParser("");
+			var vacancies = _mapper.Map<IEnumerable<Vacancy>>(parser.Parse());
+			await _wrapper.VacancyRepository.CreateRangeAsync(vacancies);
 		}
 	}
 }

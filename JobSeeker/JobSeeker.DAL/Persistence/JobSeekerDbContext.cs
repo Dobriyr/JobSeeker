@@ -1,5 +1,4 @@
-﻿using JobSeeker.DAL.Entities.Site;
-using JobSeeker.DAL.Entities.Vacancy;
+﻿using JobSeeker.DAL.Entities.Vacancy;
 using Microsoft.EntityFrameworkCore;
 
 namespace JobSeeker.DAL.Persistence
@@ -14,14 +13,12 @@ namespace JobSeeker.DAL.Persistence
 			: base(options)
 		{
 		}
-		/*
-		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+	
+		/*protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{		
 			optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=JobSeekerDb;User Id=sa;Password=Admin@1234;MultipleActiveResultSets=true");
-		}
-		*/
+		}*/
 
 		public DbSet<Vacancy> Vacancies { get; set; }
-		public DbSet<Site> Sites { get; set; }
 	}
 }

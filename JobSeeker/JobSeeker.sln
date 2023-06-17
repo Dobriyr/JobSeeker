@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobSeeker.DAL", "JobSeeker.DAL\JobSeeker.DAL.csproj", "{4D5B9C3D-05DF-4F43-AD9C-5EAF0DC7DB96}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JobSeeker.DAL", "JobSeeker.DAL\JobSeeker.DAL.csproj", "{4D5B9C3D-05DF-4F43-AD9C-5EAF0DC7DB96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobSeeker.BLL", "JobSeeker.BLL\JobSeeker.BLL.csproj", "{53DA98CA-4C86-406E-8FA6-8CF5B3F10517}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JobSeeker.BLL", "JobSeeker.BLL\JobSeeker.BLL.csproj", "{53DA98CA-4C86-406E-8FA6-8CF5B3F10517}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobSeeker.WebApi", "JobSeeker.WebApi\JobSeeker.WebApi.csproj", "{F9AF84D4-249A-4643-8EB4-A90757C86785}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JobSeeker.WebApi", "JobSeeker.WebApi\JobSeeker.WebApi.csproj", "{F9AF84D4-249A-4643-8EB4-A90757C86785}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobSeeker.Tests", "JobSeeker.Tests\JobSeeker.Tests.csproj", "{BE464792-5997-4790-ACC3-3462C049F411}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{F9AF84D4-249A-4643-8EB4-A90757C86785}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9AF84D4-249A-4643-8EB4-A90757C86785}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9AF84D4-249A-4643-8EB4-A90757C86785}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE464792-5997-4790-ACC3-3462C049F411}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE464792-5997-4790-ACC3-3462C049F411}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE464792-5997-4790-ACC3-3462C049F411}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE464792-5997-4790-ACC3-3462C049F411}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

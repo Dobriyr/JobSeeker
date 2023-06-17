@@ -18,9 +18,7 @@ public interface IRepositoryBase<T>
     void Delete(T entity);
 
     void Attach(T entity);
-
-    EntityEntry<T> Entry(T entity);
-
+    bool Any();
     void Detach(T entity);
 
     Task CreateRangeAsync(IEnumerable<T> items);

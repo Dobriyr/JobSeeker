@@ -4,6 +4,7 @@ using JobSeeker.DAL.Repositories.Realizations.Base;
 using Microsoft.EntityFrameworkCore;
 using MediatR;
 using Microsoft.OpenApi.Models;
+using JobSeeker.BLL.Services.NewVacanciesMonitor;
 
 namespace JobSeeker.WebApi.Extensions
 {
@@ -24,6 +25,7 @@ namespace JobSeeker.WebApi.Extensions
 			services.AddMediatR(currentAssemblies);
 
 			services.AddTransient<SeedDataExtension>();
+			services.AddSingleton<VacanciesMonitor>();
 			// other services...)
 		}
 		public static void AddApplicationServices(this IServiceCollection services, ConfigurationManager configuration)

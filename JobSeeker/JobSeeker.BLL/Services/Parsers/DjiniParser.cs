@@ -16,7 +16,7 @@ namespace JobSeeker.BLL.Services.Parsers
 {
     public class DjiniParser : Parser, IParser
     {
-		public DjiniParser(string _link) : base(_link)
+		public DjiniParser()
 		{
             this._link = "https://djinni.co/jobs/?all-keywords=&any-of-keywords=&exclude-keywords=&primary_keyword=.NET&exp_level=no_exp";
 		}

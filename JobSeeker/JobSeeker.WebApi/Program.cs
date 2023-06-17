@@ -3,6 +3,8 @@ using JobSeeker.BLL.Services.NewVacanciesMonitor;
 using JobSeeker.BLL.Services.Parsers;
 using JobSeeker.WebApi.Extensions;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Host.ConfigureApplication();
@@ -30,9 +32,11 @@ else
 
 app.UseAuthorization();
 
-app.MapControllers();
+app.UseHangfireDashboard("/dashboard");
 
-// BackgroundJob.Schedule<VacanciesMonitor>(
-//	 wp => wp.CheckForVacancies(), TimeSpan.FromMinutes(1));
+RecurringJob.AddOrUpdate<VacanciesMonitor>("checkNewVacancies",
+	methodCall: wp => wp.CheckForVacancies(), Cron.Minutely());
+
+app.MapControllers();
 
 app.Run();

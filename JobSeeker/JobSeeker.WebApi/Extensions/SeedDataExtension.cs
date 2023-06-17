@@ -60,7 +60,7 @@ namespace JobSeeker.WebApi.Extensions
 		}
 		private async Task SeedVacancies()
 		{
-			IParser parser = new DjiniParser("");
+			IParser parser = new DjiniParser();
 			var vacancies = _mapper.Map<IEnumerable<Vacancy>>(parser.Parse());
 			await _wrapper.VacancyRepository.CreateRangeAsync(vacancies);
 		}

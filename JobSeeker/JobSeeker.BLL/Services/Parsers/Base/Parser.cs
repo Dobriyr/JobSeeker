@@ -14,9 +14,8 @@ namespace JobSeeker.BLL.Services.Parsers.Base
         protected readonly WebClient _client = new();
         protected string _link;
 
-        protected Parser(string link)
+        protected Parser()
         {
-            _link = link;
         }
     }
 }

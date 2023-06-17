@@ -5,6 +5,9 @@ using Microsoft.EntityFrameworkCore;
 using MediatR;
 using Microsoft.OpenApi.Models;
 using JobSeeker.BLL.Services.NewVacanciesMonitor;
+using Hangfire;
+using JobSeeker.BLL.Services.Parsers.Base;
+using JobSeeker.BLL.Services.Parsers;
 
 namespace JobSeeker.WebApi.Extensions
 {
@@ -24,8 +27,9 @@ namespace JobSeeker.WebApi.Extensions
 			services.AddAutoMapper(currentAssemblies);
 			services.AddMediatR(currentAssemblies);
 
-			services.AddTransient<SeedDataExtension>();
-			services.AddSingleton<VacanciesMonitor>();
+			services.AddSingleton<SeedDataExtension>();
+			services.AddScoped<IParser, DjiniParser>();
+			services.AddScoped<VacanciesMonitor>();
 			// other services...)
 		}
 		public static void AddApplicationServices(this IServiceCollection services, ConfigurationManager configuration)
@@ -40,12 +44,11 @@ namespace JobSeeker.WebApi.Extensions
 				});
 			});
 
-			/*services.AddHangfire(config =>
+			services.AddHangfire(config =>
 			{
 				config.UseSqlServerStorage(connectionString);
 			});
-			
-			services.AddHangfireServer();*/
+			services.AddHangfireServer();
 
 			services.AddControllers();
 

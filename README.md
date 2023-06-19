@@ -3,6 +3,9 @@
 </div>
 
 # JobSeeker
+---
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Dobriyr_JobSeeker&metric=alert_status)](https://sonarcloud.io/project/overview?id=Dobriyr_JobSeeker) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Dobriyr_JobSeeker&metric=coverage)](https://sonarcloud.io/dashboard?id=Dobriyr_JobSeeker) [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=Dobriyr_JobSeeker&metric=bugs)](https://sonarcloud.io/dashboard?id=Dobriyr_JobSeeker) [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=Dobriyr_JobSeeker&metric=code_smells)](https://sonarcloud.io/dashboard?id=Dobriyr_JobSeeker) [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=Dobriyr_JobSeeker&metric=security_rating)](https://sonarcloud.io/dashboard?id=Dobriyr_JobSeeker)
+---
 
 This project is being developed to simplify and help in the job search. The first version of the product at the end of development will involve subscribing to a specific job and collecting all these jobs from the following sites:
 * https://djinni.co/

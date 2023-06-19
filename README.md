@@ -3,7 +3,6 @@
 </div>
 
 # JobSeeker
----
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Dobriyr_JobSeeker&metric=alert_status)](https://sonarcloud.io/project/overview?id=Dobriyr_JobSeeker) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Dobriyr_JobSeeker&metric=coverage)](https://sonarcloud.io/dashboard?id=Dobriyr_JobSeeker) [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=Dobriyr_JobSeeker&metric=bugs)](https://sonarcloud.io/dashboard?id=Dobriyr_JobSeeker) [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=Dobriyr_JobSeeker&metric=code_smells)](https://sonarcloud.io/dashboard?id=Dobriyr_JobSeeker) [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=Dobriyr_JobSeeker&metric=security_rating)](https://sonarcloud.io/dashboard?id=Dobriyr_JobSeeker)
 ---
 

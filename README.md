@@ -12,3 +12,4 @@ This project is being developed to simplify and help in the job search. The firs
 * https://rabota.ua/ua
 
 Data about a new job will be sent to your mail and/or your telegram in the form of Job title, additional information about it, a link to it
+Some chanhes

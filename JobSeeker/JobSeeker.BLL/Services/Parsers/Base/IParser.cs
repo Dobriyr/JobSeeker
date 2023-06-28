@@ -10,6 +10,6 @@ namespace JobSeeker.BLL.Services.Parsers.Base
 {
 	public interface IParser
 	{
-		public List<VacancyDTO> Parse();
+		public Task<IEnumerable<VacancyDto>> Parse();
 	}
 }

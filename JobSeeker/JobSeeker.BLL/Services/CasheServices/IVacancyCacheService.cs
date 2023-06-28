@@ -11,7 +11,7 @@ namespace JobSeeker.BLL.Services.CasheServices
 	{
 		public void ClearCache();
 		public void InitializeCache();
-		public void AddVacanciesToCache(IEnumerable<VacancyShortDTO> vacanciesToAdd);
-		public IEnumerable<VacancyShortDTO> GetCachedVacancies();
+		public void AddVacanciesToCache(IEnumerable<VacancyShortDto> vacanciesToAdd);
+		public IEnumerable<VacancyShortDto> GetCachedVacancies();
 	}
 }

@@ -1,14 +1,7 @@
-﻿using AutoMapper;
-using Azure.Core;
-using HtmlAgilityPack;
+﻿using HtmlAgilityPack;
 using JobSeeker.BLL.DTO.Vacancy;
 using JobSeeker.BLL.Services.DataConverter;
 using JobSeeker.BLL.Services.Parsers.Base;
-using JobSeeker.DAL.Entities.Vacancy;
-using JobSeeker.DAL.Persistence;
-using JobSeeker.DAL.Repositories.Interfaces.Base;
-using JobSeeker.DAL.Repositories.Realizations.Base;
-using System.Net;
 using System.Text.RegularExpressions;
 using System.Web;
 
@@ -16,21 +9,21 @@ namespace JobSeeker.BLL.Services.Parsers
 {
     public class DjiniParser : Parser, IParser
     {
-		public DjiniParser()
+		public DjiniParser() : base()
 		{
             this._link = "https://djinni.co/jobs/?all-keywords=&any-of-keywords=&exclude-keywords=&primary_keyword=.NET&exp_level=no_exp";
 		}
 
-		public List<VacancyDTO> Parse()
+		public async Task<IEnumerable<VacancyDto>> Parse()
         {
-            List<VacancyDTO> vacancies = new();
+            List<VacancyDto> vacancies = new();
 			HtmlDocument doc = new();
 			try
             {
 				// parsing data from link
 				try
                 {
-                    string html = _client.DownloadString(_link);
+                    string html = await _client.GetStringAsync(_link);
                     doc.LoadHtml(html);
                 }
                 catch(Exception)
@@ -40,7 +33,6 @@ namespace JobSeeker.BLL.Services.Parsers
 
                 HtmlNode jobList = doc.DocumentNode.SelectSingleNode("//ul[@class='list-unstyled list-jobs']");
 
-                //initialize Vacancy list;
                 if (jobList != null && jobList.HasChildNodes)
                 {
                     HtmlNodeCollection jobs = jobList.ChildNodes;
@@ -49,7 +41,7 @@ namespace JobSeeker.BLL.Services.Parsers
                         if (job != null && job.HasChildNodes)
                         {
                             RemoveEmptyNodes(job);
-                            VacancyDTO vacancy = GetVacancy(job);
+                            VacancyDto vacancy = GetVacancy(job);
                             vacancies.Add(vacancy);
                         }
                     }
@@ -63,7 +55,7 @@ namespace JobSeeker.BLL.Services.Parsers
             return vacancies;
         }
 
-        private void RemoveEmptyNodes(HtmlNode toClear)
+        private static void RemoveEmptyNodes(HtmlNode toClear)
         {
             for (int i = toClear.ChildNodes.Count - 1; i >= 0; i--)
             {
@@ -74,9 +66,9 @@ namespace JobSeeker.BLL.Services.Parsers
                 }
             }
         }
-        private VacancyDTO GetVacancy(HtmlNode job)
+        private static VacancyDto GetVacancy(HtmlNode job)
         {
-            VacancyDTO vacancy = new();
+            VacancyDto vacancy = new();
             HtmlNodeCollection jobInfo = job.ChildNodes;
             int stepNum = 1;
 
@@ -109,7 +101,7 @@ namespace JobSeeker.BLL.Services.Parsers
             return vacancy;
         }
 
-        private void GetDjiniHeader(HtmlNode info, VacancyDTO vacancy)
+        private static void GetDjiniHeader(HtmlNode info, VacancyDto vacancy)
         {
             string[] values = info.InnerText.Trim().Replace('\n', ' ')
                          .Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
@@ -161,7 +153,7 @@ namespace JobSeeker.BLL.Services.Parsers
             vacancy.Link = $"https://djinni.co{link}";
         }
 
-        private void GetDjineFooter(HtmlNode info, VacancyDTO vacancy)
+        private static void GetDjineFooter(HtmlNode info, VacancyDto vacancy)
         {
             string data = HttpUtility.HtmlDecode(info.InnerText);
             string footer = $"\n{data.Replace("Детальніше", "").Replace('\n', ' ').Trim()}";
@@ -169,7 +161,7 @@ namespace JobSeeker.BLL.Services.Parsers
             vacancy.Description = footer;
         }
 
-        private void GetDjiniBody(HtmlNode info, VacancyDTO vacancy)
+        private static void GetDjiniBody(HtmlNode info, VacancyDto vacancy)
         {
             string location = info.ChildNodes?[1]?.SelectSingleNode(".//span[@class='location-text']")
                        ?.InnerText

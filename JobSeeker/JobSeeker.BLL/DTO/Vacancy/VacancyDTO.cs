@@ -1,6 +1,6 @@
 ﻿namespace JobSeeker.BLL.DTO.Vacancy;
 
-public class VacancyDTO
+public class VacancyDto
 {
 	public int Id { get; set; }
 	public string Name { get; set; } = string.Empty;

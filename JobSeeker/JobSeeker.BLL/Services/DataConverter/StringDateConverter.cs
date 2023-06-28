@@ -2,7 +2,7 @@
 
 namespace JobSeeker.BLL.Services.DataConverter
 {
-	public class StringDateConverter
+	public static class StringDateConverter
 	{
 		public static DateTime GetDjiniDate(string dateString)
 		{

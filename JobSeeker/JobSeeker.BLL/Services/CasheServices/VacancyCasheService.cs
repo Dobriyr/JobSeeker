@@ -27,25 +27,27 @@ namespace JobSeeker.BLL.Services.CasheServices
 			_mapper = mapper;
 			_memoryCache = memoryCache;
 		}
-		public IEnumerable<VacancyShortDTO> GetCachedVacancies()
+		public IEnumerable<VacancyShortDto> GetCachedVacancies()
 		{
-			if (!_memoryCache.TryGetValue(KeyToCache, out List<VacancyShortDTO>? cachedVacancies))
+			Console.WriteLine("Get cached");
+			if (!_memoryCache.TryGetValue(KeyToCache, out List<VacancyShortDto>? cachedVacancies))
 			{
 				InitializeCache();
 			}
-			_memoryCache.TryGetValue(KeyToCache, out List<VacancyShortDTO>? cachedVacanciesEnsure);
+			_memoryCache.TryGetValue(KeyToCache, out List<VacancyShortDto>? cachedVacanciesEnsure);
 			return cachedVacanciesEnsure!;
 		}
-		public void AddVacanciesToCache(IEnumerable<VacancyShortDTO> vacanciesToAdd)
+		public void AddVacanciesToCache(IEnumerable<VacancyShortDto> vacanciesToAdd)
 		{
-			if (_memoryCache.TryGetValue(KeyToCache, out List<VacancyShortDTO>? cachedVacancies))
+			if (_memoryCache.TryGetValue(KeyToCache, out List<VacancyShortDto>? cachedVacancies))
 			{
 				cachedVacancies?.AddRange(vacanciesToAdd);
 			}
 		}
 		public void ClearCache()
 		{
-			List<VacancyShortDTO> emptyList = new();
+			Console.WriteLine("Clear cache");
+			List<VacancyShortDto> emptyList = new();
 
 			var cacheEntryOptions = new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromDays(1));
 			_memoryCache.Set(KeyToCache, emptyList, cacheEntryOptions);
@@ -57,12 +59,12 @@ namespace JobSeeker.BLL.Services.CasheServices
 			var cacheEntryOptions = new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromDays(1));
 			_memoryCache.Set(KeyToCache, vacancies, cacheEntryOptions);
 		}
-		private IEnumerable<VacancyShortDTO> GetOldVacancies()
+		private IEnumerable<VacancyShortDto> GetOldVacancies()
 		{
 			var oldVacancies = _repositoryWrapper.VacancyRepository
 				.GetAllAsync(predicate: s => s.CreatedDate == DateTime.Today).Result;
 
-			var shortVacancyDTO = _mapper.Map<IEnumerable<VacancyShortDTO>>(oldVacancies);
+			var shortVacancyDTO = _mapper.Map<IEnumerable<VacancyShortDto>>(oldVacancies);
 			return shortVacancyDTO;
 		}
 

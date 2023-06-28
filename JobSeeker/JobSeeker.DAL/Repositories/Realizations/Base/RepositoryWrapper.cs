@@ -13,7 +13,6 @@ namespace JobSeeker.DAL.Repositories.Realizations.Base
 		public RepositoryWrapper(JobSeekerDbContext jobSeekerDbContext)
 		{
 			_jobSeekerDbContext = jobSeekerDbContext;
-			// _vacancyRepository = null!;
 		}
 
 		public IVacancyRepository VacancyRepository

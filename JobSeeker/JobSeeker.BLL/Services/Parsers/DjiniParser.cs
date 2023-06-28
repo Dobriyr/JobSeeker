@@ -66,7 +66,7 @@ namespace JobSeeker.BLL.Services.Parsers
                 }
             }
         }
-        private VacancyDto GetVacancy(HtmlNode job)
+        private static VacancyDto GetVacancy(HtmlNode job)
         {
             VacancyDto vacancy = new();
             HtmlNodeCollection jobInfo = job.ChildNodes;

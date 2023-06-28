@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JobSeeker.BLL.DTO.Vacancy
 {
-	public class VacancyShortDTO
+	public class VacancyShortDto
 	{
 		public string Name { get; set; } = string.Empty;
 		public string Link { get; set; } = string.Empty;

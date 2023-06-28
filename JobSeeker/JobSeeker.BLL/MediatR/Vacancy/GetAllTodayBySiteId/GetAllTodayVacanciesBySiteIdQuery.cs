@@ -4,5 +4,5 @@ using MediatR;
 
 namespace JobSeeker.BLL.MediatR.Vacancy.GetAllTodayBySiteId
 {
-	public record class GetAllTodayVacanciesBySiteIdQuery(int siteId) : IRequest<Result<IEnumerable<VacancyDTO>>>;
+	public record class GetAllTodayVacanciesBySiteIdQuery(int siteId) : IRequest<Result<IEnumerable<VacancyDto>>>;
 }

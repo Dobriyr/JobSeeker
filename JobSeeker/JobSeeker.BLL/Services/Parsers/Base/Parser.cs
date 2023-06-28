@@ -11,11 +11,13 @@ namespace JobSeeker.BLL.Services.Parsers.Base
 {
     public abstract class Parser
     {
-        protected readonly WebClient _client = new();
+        protected readonly HttpClient _client;
         protected string _link;
 
         protected Parser()
         {
-        }
+            _link = "";
+            _client = new();
+		}
     }
 }

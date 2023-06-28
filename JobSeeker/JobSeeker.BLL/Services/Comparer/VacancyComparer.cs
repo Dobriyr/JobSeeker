@@ -9,14 +9,14 @@ namespace JobSeeker.BLL.Services.Comparer
 {
     public static class VacancyComparer
     {
-        public static bool Compare(this VacancyDTO oldVacancy, VacancyDTO newVacancy)
+        public static bool Compare(this VacancyDto oldVacancy, VacancyDto newVacancy)
         {
             return
                 oldVacancy.Link == newVacancy.Link &&
                 oldVacancy.CreatedDate == newVacancy.CreatedDate &&
                 oldVacancy.Name == newVacancy.Name;
         }
-		public static bool Compare(this VacancyDTO oldVacancy, VacancyShortDTO newVacancy)
+		public static bool Compare(this VacancyDto oldVacancy, VacancyShortDto newVacancy)
 		{
 			return
 				oldVacancy.Link == newVacancy.Link &&

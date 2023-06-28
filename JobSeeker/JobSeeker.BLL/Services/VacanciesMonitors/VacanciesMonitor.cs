@@ -38,15 +38,15 @@ namespace JobSeeker.BLL.Services.VacanciesMonitors
 				if (!vacanciesToAdd.IsNullOrEmpty())
 				{
 					int count = vacanciesToAdd.Count();
-					SaveVacancies(vacanciesToAdd);
+					await SaveVacancies(vacanciesToAdd);
 					Console.WriteLine($"\nAdded {count} vacancies\n");
 				}
 			}
 		}
-		private async Task SaveVacancies(IEnumerable<VacancyDTO> vacanciesToAdd)
+		private async Task SaveVacancies(IEnumerable<VacancyDto> vacanciesToAdd)
 		{
 			var vacanciesForDB = _mapper.Map<IEnumerable<Vacancy>>(vacanciesToAdd);
-			var vacanciesForCashe = _mapper.Map<IEnumerable<VacancyShortDTO>>(vacanciesToAdd);
+			var vacanciesForCashe = _mapper.Map<IEnumerable<VacancyShortDto>>(vacanciesToAdd);
 
 			await _repositoryWrapper.VacancyRepository.CreateRangeAsync(vacanciesForDB);
 			_repositoryWrapper.SaveChanges();
@@ -54,9 +54,9 @@ namespace JobSeeker.BLL.Services.VacanciesMonitors
 			_vacancyCache.AddVacanciesToCache(vacanciesForCashe);
 		}
 
-		private IEnumerable<VacancyDTO> GetNewVacancies()
+		private IEnumerable<VacancyDto> GetNewVacancies()
 		{
-			return _parser.Parse().Where(x => x.CreatedDate == DateTime.Today);
+			return _parser.Parse().Result.Where(x => x.CreatedDate == DateTime.Today);
 		}
 	}
 }

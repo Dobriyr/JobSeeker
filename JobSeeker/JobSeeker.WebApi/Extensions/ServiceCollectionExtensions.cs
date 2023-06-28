@@ -4,10 +4,11 @@ using JobSeeker.DAL.Repositories.Realizations.Base;
 using Microsoft.EntityFrameworkCore;
 using MediatR;
 using Microsoft.OpenApi.Models;
-using JobSeeker.BLL.Services.NewVacanciesMonitor;
 using Hangfire;
 using JobSeeker.BLL.Services.Parsers.Base;
 using JobSeeker.BLL.Services.Parsers;
+using JobSeeker.BLL.Services.VacanciesMonitors;
+using JobSeeker.BLL.Services.CasheServices;
 
 namespace JobSeeker.WebApi.Extensions
 {
@@ -26,10 +27,12 @@ namespace JobSeeker.WebApi.Extensions
 
 			services.AddAutoMapper(currentAssemblies);
 			services.AddMediatR(currentAssemblies);
+			services.AddMemoryCache();
 
 			services.AddSingleton<SeedDataExtension>();
 			services.AddScoped<IParser, DjiniParser>();
-			services.AddScoped<VacanciesMonitor>();
+			services.AddSingleton<VacanciesMonitor>();
+			services.AddSingleton<IVacancyCacheService, VacancyCasheService>();
 			// other services...)
 		}
 		public static void AddApplicationServices(this IServiceCollection services, ConfigurationManager configuration)

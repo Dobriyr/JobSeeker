@@ -1,0 +1,22 @@
+﻿{
+  "profiles": {
+    "JobSeeker_Local": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": false,
+      "applicationUrl": "http://localhost:5000;https://localhost:5001",
+      "environmentVariables": {
+        "JOBSEEKER_ENVIROMENT": "Local",
+        "ASPNETCORE_ENVIRONMENT": "Local"
+      }
+    }
+  },
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:5000;https://localhost:5001"
+    }
+  }
+}

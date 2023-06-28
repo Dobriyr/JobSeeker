@@ -16,5 +16,12 @@ namespace JobSeeker.BLL.Services.Comparer
                 oldVacancy.CreatedDate == newVacancy.CreatedDate &&
                 oldVacancy.Name == newVacancy.Name;
         }
-    }
+		public static bool Compare(this VacancyDTO oldVacancy, VacancyShortDTO newVacancy)
+		{
+			return
+				oldVacancy.Link == newVacancy.Link &&
+				oldVacancy.CreatedDate == newVacancy.CreatedDate &&
+				oldVacancy.Name == newVacancy.Name;
+		}
+	}
 }

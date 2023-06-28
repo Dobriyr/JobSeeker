@@ -1,6 +1,6 @@
 using Hangfire;
-using JobSeeker.BLL.Services.NewVacanciesMonitor;
 using JobSeeker.BLL.Services.Parsers;
+using JobSeeker.BLL.Services.VacanciesMonitors;
 using JobSeeker.WebApi.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -21,7 +21,6 @@ if (app.Environment.EnvironmentName == "Local")
 	app.UseSwagger();
 	app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebAPIv5 v1"));
 	await app.ApplyMigrations();
-
 	await SeedDataExtension.SeedData(app);
 }
 else
@@ -33,9 +32,7 @@ else
 app.UseAuthorization();
 
 app.UseHangfireDashboard("/dashboard");
-
-RecurringJob.AddOrUpdate<VacanciesMonitor>("checkNewVacancies",
-	methodCall: wp => wp.CheckForVacancies(), Cron.Minutely());
+app.AddBackgroundJobs();
 
 app.MapControllers();
 

@@ -9,7 +9,7 @@ namespace JobSeeker.DAL.Repositories.Realizations.Base
 	public class RepositoryWrapper : IRepositoryWrapper
 	{
 		private readonly JobSeekerDbContext _jobSeekerDbContext;
-		private IVacancyRepository _vacancyRepository;
+		private IVacancyRepository? _vacancyRepository;
 		public RepositoryWrapper(JobSeekerDbContext jobSeekerDbContext)
 		{
 			_jobSeekerDbContext = jobSeekerDbContext;

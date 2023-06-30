@@ -12,4 +12,31 @@ public class VacancyDto
 	public int? Views { get; set; }
 	public int? Responses { get; set; }
 	public string? Description { get; set; }
+
+	public override bool Equals(object? obj)
+	{
+		return this.Equals(obj as VacancyDto);
+	}
+	public override int GetHashCode()
+	{
+		return HashCode.Combine(Id, Name, Link, CreatedDate);
+	}
+
+	private bool Equals(VacancyDto? other)
+	{
+		if (other == null)
+		{
+			return false;
+		}
+
+		return
+			this.Id == other.Id &&
+			this.Name == other.Name &&
+			this.Link == other.Link &&
+			this.CreatedDate == other.CreatedDate &&
+			this.Location == other.Location &&
+			this.Company == other.Company &&
+			this.Remote == other.Remote &&
+			this.Description == other.Description;
+	}
 }

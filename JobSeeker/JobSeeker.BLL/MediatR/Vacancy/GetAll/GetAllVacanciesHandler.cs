@@ -32,3 +32,4 @@ namespace JobSeeker.BLL.MediatR.Vacancy.GetAll
 		}
 	}
 }
+  

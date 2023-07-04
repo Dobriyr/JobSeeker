@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using JobSeeker.BLL.DTO.Vacancy;
+using JobSeeker.BLL.Dto.Vacancy;
 using JobSeeker.BLL.Services.Parsers;
 using JobSeeker.BLL.Services.Parsers.Base;
 using JobSeeker.DAL.Entities.Vacancy;

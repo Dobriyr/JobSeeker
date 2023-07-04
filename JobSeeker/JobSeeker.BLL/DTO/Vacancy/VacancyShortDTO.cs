@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JobSeeker.BLL.DTO.Vacancy
+namespace JobSeeker.BLL.Dto.Vacancy
 {
 	public class VacancyShortDto
 	{

@@ -1,4 +1,4 @@
-﻿using JobSeeker.BLL.DTO.Vacancy;
+﻿using JobSeeker.BLL.Dto.Vacancy;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using FluentResults;
-using JobSeeker.BLL.DTO.Vacancy;
+using JobSeeker.BLL.Dto.Vacancy;
 using JobSeeker.BLL.MediatR.ResultVariations;
 using JobSeeker.DAL.Repositories.Interfaces.Base;
 using MediatR;

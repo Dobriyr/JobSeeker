@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using JobSeeker.BLL.DTO.Vacancy;
+using JobSeeker.BLL.Dto.Vacancy;
 using JobSeeker.BLL.Services.CasheServices;
 using JobSeeker.BLL.Services.Comparer;
 using JobSeeker.BLL.Services.Parsers;

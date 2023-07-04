@@ -1,5 +1,5 @@
 ﻿using HtmlAgilityPack;
-using JobSeeker.BLL.DTO.Vacancy;
+using JobSeeker.BLL.Dto.Vacancy;
 using JobSeeker.BLL.Services.DataConverter;
 using JobSeeker.BLL.Services.Parsers.Base;
 using System.Text.RegularExpressions;

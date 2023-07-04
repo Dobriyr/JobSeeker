@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using FluentResults;
-using JobSeeker.BLL.DTO.Vacancy;
+using JobSeeker.BLL.Dto.Vacancy;
 
 namespace JobSeeker.BLL.MediatR.Vacancy.GetAll
 {

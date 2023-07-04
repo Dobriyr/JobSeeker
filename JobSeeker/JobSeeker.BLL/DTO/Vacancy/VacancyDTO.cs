@@ -1,4 +1,4 @@
-﻿namespace JobSeeker.BLL.DTO.Vacancy;
+﻿namespace JobSeeker.BLL.Dto.Vacancy;
 
 public class VacancyDto
 {

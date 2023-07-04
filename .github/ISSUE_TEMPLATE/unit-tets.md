@@ -7,7 +7,7 @@ assignees: ''
 
 ---
 
-**As a** *developer* **I want to** cover my unit code with tests  **so that** I can effectively find bugs and understand what is going wrong 
+**As a** *developer* **I want to** cover my code with unit tests **so that** I can effectively find bugs and understand what is going wrong 
 
 **Description**
 Write a test to check if the **FuncName**

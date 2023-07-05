@@ -7,6 +7,57 @@ namespace JobSeeker.Tests.DataTypeObjects.Vacancies
 	{
 
 		[Fact]
+		public void VacancyDto_PropertiesGetSetTest()
+		{
+			// Arrange
+			VacancyDto vacancyDtoSet = new VacancyDto();
+			int id = 1;
+			string name = "name";
+			string link = "link";
+			DateTime createdDate = DateTime.MinValue;
+			string location = "location";
+			string company = "company";
+			bool remote = true;
+			string description = "description";
+
+
+			// Act
+			vacancyDtoSet.Id = id;
+			vacancyDtoSet.Name = name;
+			vacancyDtoSet.Link = link;
+			vacancyDtoSet.CreatedDate = createdDate;
+			vacancyDtoSet.Location = location;
+			vacancyDtoSet.Company = company;
+			vacancyDtoSet.Remote = remote;
+			vacancyDtoSet.Description = description;
+
+			// Assert
+			Assert.True(
+				vacancyDtoSet.Id == id &&
+				vacancyDtoSet.Name == name &&
+				vacancyDtoSet.Link == link &&
+				vacancyDtoSet.CreatedDate == createdDate &&
+				vacancyDtoSet.Location == location &&
+				vacancyDtoSet.Company == company &&
+				vacancyDtoSet.Remote == remote &&
+				vacancyDtoSet.Description == description
+			 );
+		}
+
+		[Fact]
+		public void VacancyDto_EqualsMethodReturnFalseOnIncorectTypeTest()
+		{
+			// Arrange
+			VacancyDto vacancyDto = GetVacancy();
+
+			// Act
+			bool result = vacancyDto.Equals("something that is not type of VacancyDto");
+
+			// Assert
+			Assert.False(result);
+		}
+
+		[Fact]
 		public void VacancyDto_EqualsMethodTest()
 		{
 			// Arrange

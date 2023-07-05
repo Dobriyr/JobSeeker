@@ -9,10 +9,8 @@ public class VacancyProfile : Profile
 	public VacancyProfile()
 	{
 		CreateMap<Vacancy, VacancyDto>().ReverseMap();
-		// .ForMember(x => x.CreatedDate, conf => conf.MapFrom(x => DateOnly.FromDateTime(x.CreatedDate)));
-
-		CreateMap<Vacancy, VacancyShortDto>();//.ForMember(x => x.CreatedDate, conf => conf.MapFrom(x => DateOnly.FromDateTime(x.CreatedDate)));
-		;
+		
+		CreateMap<Vacancy, VacancyShortDto>();
 
 		CreateMap<VacancyDto, VacancyShortDto>();
 	}

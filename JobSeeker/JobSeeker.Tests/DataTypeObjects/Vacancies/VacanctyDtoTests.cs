@@ -58,6 +58,25 @@ namespace JobSeeker.Tests.DataTypeObjects.Vacancies
 		}
 
 		[Fact]
+		public void VacancyDto_EqualsMethodWithVacancyShortDtoTest()
+		{
+			// Arrange
+			var vacancyDto = GetVacancy();
+			var vacancyDtoAnother = GetAnotherVacancy();
+			var vacancyShortDto = GetVacancyShortDto();
+
+			// Act
+			bool resultTrue = vacancyDto.Equals(vacancyShortDto);
+			bool resultFalse = vacancyDtoAnother.Equals(vacancyShortDto);
+
+			// Assert
+			Assert.Multiple(
+				() => Assert.True(resultTrue),
+				() => Assert.False(resultFalse)
+			);
+		}
+
+		[Fact]
 		public void VacancyDto_EqualsMethodTest()
 		{
 			// Arrange
@@ -93,7 +112,7 @@ namespace JobSeeker.Tests.DataTypeObjects.Vacancies
 			Assert.Multiple(
 					() => Assert.True(resultVacancyDto1 == resultVacancyDto2),
 					() => Assert.False(resultVacancyDto1 == resultVacancyDtoAnother)
-				) ;
+				);
 		}
 
 		[Fact]
@@ -102,7 +121,7 @@ namespace JobSeeker.Tests.DataTypeObjects.Vacancies
 			// Arrange
 			VacancyDto vacancyDtoAnother = GetAnotherVacancy();
 			int expected = HashCode.Combine(
-				vacancyDtoAnother.Id, vacancyDtoAnother.Name, vacancyDtoAnother.Link, vacancyDtoAnother.CreatedDate);
+				vacancyDtoAnother.Name, vacancyDtoAnother.Link, vacancyDtoAnother.CreatedDate);
 
 			// Act
 			int hashResult = vacancyDtoAnother.GetHashCode();
@@ -111,7 +130,12 @@ namespace JobSeeker.Tests.DataTypeObjects.Vacancies
 			Assert.True(expected == hashResult);
 		}
 
-
+		private VacancyShortDto GetVacancyShortDto() => new VacancyShortDto
+		{
+			Name = "Name1",
+			Link = "Link1",
+			CreatedDate = DateTime.MaxValue
+		};
 		private VacancyDto GetVacancy() => new VacancyDto
 		{
 			Id = 1,
@@ -121,8 +145,6 @@ namespace JobSeeker.Tests.DataTypeObjects.Vacancies
 			Location = "Location1",
 			Company = "Company1",
 			Remote = true,
-			Views = 1,
-			Responses = 2,
 			Description = "Description1"
 		};
 		private VacancyDto GetAnotherVacancy() => new VacancyDto
@@ -134,8 +156,6 @@ namespace JobSeeker.Tests.DataTypeObjects.Vacancies
 			Location = "Location2",
 			Company = "Company2",
 			Remote = false,
-			Views = 2,
-			Responses = 3,
 			Description = "Description2"
 		};
 	}

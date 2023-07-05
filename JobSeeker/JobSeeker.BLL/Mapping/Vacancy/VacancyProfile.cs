@@ -8,11 +8,10 @@ public class VacancyProfile : Profile
 {
 	public VacancyProfile()
 	{
-		CreateMap<VacancyDto, Vacancy>()
-			.ReverseMap();
-
-		CreateMap<Vacancy, VacancyShortDto>();
+		CreateMap<Vacancy, VacancyDto>().ReverseMap();
 		
+		CreateMap<Vacancy, VacancyShortDto>();
+
 		CreateMap<VacancyDto, VacancyShortDto>();
 	}
 }

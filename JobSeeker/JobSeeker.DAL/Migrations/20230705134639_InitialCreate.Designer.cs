@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JobSeeker.DAL.Migrations
 {
     [DbContext(typeof(JobSeekerDbContext))]
-    [Migration("20230617143024_InitialCreate")]
+    [Migration("20230705134639_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -61,12 +61,6 @@ namespace JobSeeker.DAL.Migrations
 
                     b.Property<bool?>("Remote")
                         .HasColumnType("bit");
-
-                    b.Property<int?>("Responses")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Views")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

@@ -56,7 +56,7 @@ namespace JobSeeker.BLL.Services.VacanciesMonitors
 
 		private IEnumerable<VacancyDto> GetNewVacancies()
 		{
-			return _parser.Parse().Result.Where(x => x.CreatedDate == DateTime.Today);
+			return _parser.Parse().Result/*.Where(x => x.CreatedDate == DateOnly.FromDateTime(DateTime.Today))*/;
 		}
 	}
 }

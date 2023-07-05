@@ -29,7 +29,5 @@ public class Vacancy
     [MaxLength(100)]
     public string Company { get; set; } = string.Empty;
     public bool? Remote { get; set; }
-    public int? Views { get; set; }
-    public int? Responses { get; set; }
     public string? Description { get; set; }
 }

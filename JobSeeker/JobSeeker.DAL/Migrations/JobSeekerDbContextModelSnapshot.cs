@@ -59,12 +59,6 @@ namespace JobSeeker.DAL.Migrations
                     b.Property<bool?>("Remote")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("Responses")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Views")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.ToTable("vacancies", "vacancy");

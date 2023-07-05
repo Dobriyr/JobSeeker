@@ -27,8 +27,6 @@ namespace JobSeeker.DAL.Migrations
                     Location = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Company = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Remote = table.Column<bool>(type: "bit", nullable: true),
-                    Views = table.Column<int>(type: "int", nullable: true),
-                    Responses = table.Column<int>(type: "int", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>

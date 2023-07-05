@@ -9,8 +9,8 @@ namespace JobSeeker.BLL.Services.DataConverter
 			string format = "d MMMM";
 			CultureInfo culture = new CultureInfo("uk-UA");
 			dateString = dateString.Trim();
+			DateTime dateTime = DateTime.MinValue;
 
-			DateTime dateTime = DateTime.Today;
 			try
 			{
 				dateTime = DateTime.ParseExact(dateString, format, culture);

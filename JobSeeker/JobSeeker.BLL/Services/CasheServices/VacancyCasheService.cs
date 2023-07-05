@@ -62,7 +62,7 @@ namespace JobSeeker.BLL.Services.CasheServices
 		private IEnumerable<VacancyShortDto> GetOldVacancies()
 		{
 			var oldVacancies = _repositoryWrapper.VacancyRepository
-				.GetAllAsync(predicate: s => s.CreatedDate == DateTime.Today).Result;
+				.GetAllAsync(/*predicate: s => s.CreatedDate == /*DateOnly.FromDateTime(DateTime.Today*/).Result;
 
 			var shortVacancyDTO = _mapper.Map<IEnumerable<VacancyShortDto>>(oldVacancies);
 			return shortVacancyDTO;

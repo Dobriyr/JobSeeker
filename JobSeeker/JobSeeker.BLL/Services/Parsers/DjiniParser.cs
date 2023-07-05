@@ -31,7 +31,7 @@ namespace JobSeeker.BLL.Services.Parsers
                     Console.WriteLine("Bad link");
                 }
 
-                HtmlNode jobList = doc.DocumentNode.SelectSingleNode("//ul[@class='list-unstyled list-jobs']");
+               HtmlNode jobList = doc.DocumentNode.SelectSingleNode("//ul[@class='list-unstyled list-jobs']");
 
                 if (jobList != null && jobList.HasChildNodes)
                 {
@@ -123,31 +123,11 @@ namespace JobSeeker.BLL.Services.Parsers
                 }
 
                 vacancy.Name = string.Join(' ', values.Skip(3));
-                try
-                {
-                    vacancy.Views = int.Parse(values[1]);
-                    vacancy.Responses = int.Parse(values[2]);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message + " on parse views, responses to int");
-                }
             }
-
             else
             {
                 vacancy.CreatedDate = StringDateConverter.GetDjiniDate(values[0] + " " + values[1]);
                 vacancy.Name = string.Join(' ', values.Skip(4));
-
-                try
-                {
-                    vacancy.Views = int.Parse(values[2]);
-                    vacancy.Responses = int.Parse(values[3]);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message + " on parse views, responses to int");
-                }
             }
 
             vacancy.Link = $"https://djinni.co{link}";

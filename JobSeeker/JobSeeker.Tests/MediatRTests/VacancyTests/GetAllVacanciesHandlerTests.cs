@@ -114,8 +114,6 @@ namespace JobSeeker.Tests.MediatRTests.VacancyTests
 					Location = "Location1",
 					Company = "Company1",
 					Remote = false,
-					Views = 1,
-					Responses = 2,
 					Description = "Description1"
 				},
 				new(){
@@ -126,8 +124,6 @@ namespace JobSeeker.Tests.MediatRTests.VacancyTests
 					Location = "Location2",
 					Company = "Company2",
 					Remote = true,
-					Views = 2,
-					Responses = 3,
 					Description = "Description2"
 				},
 				new(){
@@ -138,8 +134,6 @@ namespace JobSeeker.Tests.MediatRTests.VacancyTests
 					Location = "Location3",
 					Company = "Company3",
 					Remote = true,
-					Views = 3,
-					Responses = 4,
 					Description = "Description3"
 				},
 
@@ -156,8 +150,6 @@ namespace JobSeeker.Tests.MediatRTests.VacancyTests
 					Location = "Location1",
 					Company = "Company1",
 					Remote = true,
-					Views = 1,
-					Responses = 2,
 					Description = "Description1"
 				},
 				new(){
@@ -168,8 +160,6 @@ namespace JobSeeker.Tests.MediatRTests.VacancyTests
 					Location = "Location2",
 					Company = "Company2",
 					Remote = false,
-					Views = 2,
-					Responses = 3,
 					Description = "Description2"
 				},
 				new(){
@@ -180,8 +170,6 @@ namespace JobSeeker.Tests.MediatRTests.VacancyTests
 					Location = "Location3",
 					Company = "Company3",
 					Remote = true,
-					Views = 3,
-					Responses = 4,
 					Description = "Description3"
 				},
 

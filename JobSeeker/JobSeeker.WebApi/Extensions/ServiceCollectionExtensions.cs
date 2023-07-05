@@ -29,10 +29,10 @@ namespace JobSeeker.WebApi.Extensions
 			services.AddMediatR(currentAssemblies);
 			services.AddMemoryCache();
 
-			services.AddSingleton<SeedDataExtension>();
+			services.AddScoped<SeedDataExtension>();
 			services.AddScoped<IParser, DjiniParser>();
-			services.AddSingleton<VacanciesMonitor>();
-			services.AddSingleton<IVacancyCacheService, VacancyCasheService>();
+			services.AddScoped<VacanciesMonitor>();
+			services.AddScoped<IVacancyCacheService, VacancyCasheService>();
 			// other services...)
 		}
 		public static void AddApplicationServices(this IServiceCollection services, ConfigurationManager configuration)
@@ -42,8 +42,8 @@ namespace JobSeeker.WebApi.Extensions
 			services.AddDbContext<JobSeekerDbContext>(options => {
 				options.UseSqlServer(connectionString, opt =>
 				{
-					opt.MigrationsAssembly(typeof(JobSeekerDbContext).Assembly.GetName().Name);
-					opt.MigrationsHistoryTable("__EFMigrationsHistory", schema: "entity_framework");
+					// opt.MigrationsAssembly(typeof(JobSeekerDbContext).Assembly.GetName().Name);
+					// opt.MigrationsHistoryTable("__EFMigrationsHistory", schema: "entity_framework");
 				});
 			});
 
